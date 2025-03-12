@@ -218,7 +218,7 @@ stim_faces_selection = _.shuffle(stim_faces_selection); // randomize order
 
     var consent = {
       type:'external-html',
-      url: "https://marinerougier.github.io/MST_stereo/external_page_consent.html",
+      url: "https://marinerougier.github.io/MTS_stereo_3/external_page_consent.html",
       cont_btn: "start",
       on_load: function() {
           $('.jspsych-content-wrapper').css({ "height": "1500px" });
@@ -994,11 +994,11 @@ timeline = _.flattenDeep(timeline); // do not remove this!
 
       /* Send data to Firebase */
       database
-        .ref("MTS_stereo/" + jspsych_id + "/")
+        .ref("MTS_stereo_3/" + jspsych_id + "/")
         .update({ dataMTS_loop })
         .then(function () {
         database
-          .ref("MTS_stereo/" + jspsych_id + "/")
+          .ref("MTS_stereo_3/" + jspsych_id + "/")
           .update({ dataMTS_measure })
           .then(function () {
                 console.log("Data sent!");
