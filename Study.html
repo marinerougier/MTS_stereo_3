@@ -967,6 +967,7 @@ preloadimages = _.flattenDeep(preloadimages);
   /* INITIALISE EXP  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
   jsPsych.init({
     timeline: timeline,
+    preload_images: preloadimages,
     max_load_time: 500 * 1000,
     exclusions: {
       min_width: 1100,
@@ -986,7 +987,6 @@ preloadimages = _.flattenDeep(preloadimages);
 
       /* jsPsych: add data to every trial */
       jsPsych.data.addProperties({
-      	preload_images: preloadimages,
         jspsych_id: jspsych_id,
         prolificID: prolificID,
 
