@@ -183,6 +183,9 @@ var stim_faces_total = [
 
 // Randomly picking 15 faces and creating a list
 stim_faces_selection = _.sampleSize(stim_faces_total, 15);
+
+// Preloading
+var preloadimages = [];
 preloadimages.push(stim_faces_selection, media);
 
 stim_faces_selection = stim_faces_selection.map(function(e) {return {imgHtml: "<img class='imgJudge' src='" + e + "'>"}});
