@@ -186,7 +186,7 @@ stim_faces_selection = _.sampleSize(stim_faces_total, 15);
 
 // Preloading
 var preloadimages = [];
-preloadimages.push(stim_faces_selection, media);
+preloadimages.push(...stim_faces_selection, ...media);
 
 stim_faces_selection = stim_faces_selection.map(function(e) {return {imgHtml: "<img class='imgJudge' src='" + e + "'>"}});
 stim_faces_selection = _.shuffle(stim_faces_selection); // randomize order
@@ -986,7 +986,7 @@ preloadimages = _.flattenDeep(preloadimages);
 
       /* jsPsych: add data to every trial */
       jsPsych.data.addProperties({
-      	//preload_images: preloadimages,
+      	preload_images: preloadimages,
         jspsych_id: jspsych_id,
         prolificID: prolificID,
 
