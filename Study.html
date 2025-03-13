@@ -748,21 +748,24 @@ stim_faces_selection.map(function(ciImg){
     console.log("Participant ID:", jspsych_id);
     console.log("Face Judged:", data.facejudged);
     console.log("Recorded Responses:", responses);
-      
-    // Reset CSS to default values
-    $(".jspsych-content").css("max-width", "");
-    $(".jspsych-content").css("margin-top", "");
-    $(".jspsych-survey-likert-statement").css("margin", "");
-    $(".jspsych-survey-likert-statement").css("padding", "");
-    $(".jspsych-survey-likert-opts").css("padding", "");
-    $("#jspsych-survey-likert-next").css("margin-top", "");
-    $("#jspsych-survey-likert-form").css("width", "");
-    $("li").css("width", "");
-    }
-
+      }
     };
     judgments_faces.push(likert_trial);
 });
+
+var reset_css_trial = {
+    type: "call-function",
+    func: function() {
+        $(".jspsych-content").css("max-width", "");
+        $(".jspsych-content").css("margin-top", "");
+        $(".jspsych-survey-likert-statement").css("margin", "");
+        $(".jspsych-survey-likert-statement").css("padding", "");
+        $(".jspsych-survey-likert-opts").css("padding", "");
+        $("#jspsych-survey-likert-next").css("margin-top", "");
+        $("#jspsych-survey-likert-form").css("width", "");
+        $("li").css("width", "");
+    }
+};
 
   // Demand awareness
   var demand_awareness = {
@@ -953,6 +956,7 @@ stim_faces_selection.map(function(ciImg){
                 matchingLoop, // MTS loop
                 Instr_Quest,
                 judgments_faces,
+                reset_css_trial, // reset css
                 matchingInstructions_6,
                 ...matchingTrials_measure, // MTS measure
                 Instr_demo,
