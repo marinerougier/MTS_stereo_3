@@ -789,7 +789,7 @@ stim_faces_selection.map(function(ciImg){
   // Influence awareness
   var influence_awareness = {
       type: 'survey-multi-choice',
-      questions: [{prompt: "Do you think that Part 1 of the Learning Task influenced your responses in the questionnaire (when you had to indicate the extent to which people who have one trait are likely to have another trait)?", options: ['Yes', 'No', 'I do not know'], required: true}],
+      questions: [{prompt: "Do you think that Part 1 of the Learning Task influenced your responses in the questionnaire (when you evaluated the faces)?", options: ['Yes', 'No', 'I do not know'], required: true}],
       button_label: "Continue",
       on_load: function() {
           window.scrollTo(0, 0);
@@ -806,7 +806,7 @@ stim_faces_selection.map(function(ciImg){
   // demand compliance
   var demand_compliance = {
       type: 'survey-multi-choice',
-      questions: [{prompt: "When we asked you to complete the questionnaire (when you had to indicate the extent to which people who have one trait are likely to have another trait), did you respond truthfully? Or did you try to fake your response (i.e., tried to tell us what you thought we wanted to hear)? Please be honest here (it will not affect payment in any way).", options: ['Yes - I faked my response based on what I thought the researchers wanted to find', 'No - my responses were based on how I genuinely felt', 'I do not know'], required: true}],
+      questions: [{prompt: "When we asked you to complete the questionnaire (when you evaluated the faces), did you respond truthfully? Or did you try to fake your response (i.e., tried to tell us what you thought we wanted to hear)? Please be honest here (it will not affect payment in any way).", options: ['Yes - I faked my response based on what I thought the researchers wanted to find', 'No - my responses were based on how I genuinely felt', 'I do not know'], required: true}],
       button_label: "Continue",
       on_load: function() {
           window.scrollTo(0, 0);
@@ -1001,6 +1001,7 @@ preloadimages = _.flattenDeep(preloadimages);
 
       var dataMTS_loop = data.filter({ task: "matching-to-sample_loop" }).csv();
       var dataMTS_measure = data.filter({ task: "matching-to-sample_measure" }).csv();
+      var datarating = data.filter({ task: 'rating' }).csv();
 
       /* Send data to Firebase */
       database
@@ -1011,8 +1012,12 @@ preloadimages = _.flattenDeep(preloadimages);
           .ref("MTS_stereo_3/" + jspsych_id + "/")
           .update({ dataMTS_measure })
           .then(function () {
+            .ref("MTS_stereo_3/" + jspsych_id + "/")
+            .update({ datarating })
+            .then(function () {
                 console.log("Data sent!");
                 $("#jspsych-content").html(debrief);
+          });
         });
       });
     },
