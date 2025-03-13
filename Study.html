@@ -725,31 +725,46 @@ stim_faces_selection.map(function(ciImg){
             $("li").css("width", "9%");
         },
         on_finish: function(data) {
-            data.task = "rating";
-            var parsed_response  = JSON.parse(data.responses);
+    data.task = "rating";
+    var parsed_response = JSON.parse(data.responses);
 
-            // Map shuffled responses back to their correct labels
-            var responses = {};
-            question_order.forEach((originalIndex, shuffledIndex) => {
-                var traitName = ["A1", "A2", "B1", "B2", "C1", "C2"][originalIndex];
-                responses[traitName] = parsed_response["Q" + shuffledIndex];
-            });
+    // Map shuffled responses back to their correct labels
+    var responses = {};
+    question_order.forEach((originalIndex, shuffledIndex) => {
+        var traitName = ["A1", "A2", "B1", "B2", "C1", "C2"][originalIndex];
+        responses[traitName] = parsed_response["Q" + shuffledIndex];
+    });
 
-            // Store the correct responses in data
-            data.A1 = responses["A1"];
-            data.A2 = responses["A2"];
-            data.B1 = responses["B1"];
-            data.B2 = responses["B2"];
-            data.C1 = responses["C1"];
-            data.C2 = responses["C2"];
-            data.facejudged = ciImg.imgHtml;
+    // Store both the position assignment and the actual trait name
+    data.A1 = responses["A1"];
+    data.A1_trait = positionAssignment["A1"];  // Actual trait name
+    data.A2 = responses["A2"];
+    data.A2_trait = positionAssignment["A2"];
+    data.B1 = responses["B1"];
+    data.B1_trait = positionAssignment["B1"];
+    data.B2 = responses["B2"];
+    data.B2_trait = positionAssignment["B2"];
+    data.C1 = responses["C1"];
+    data.C1_trait = positionAssignment["C1"];
+    data.C2 = responses["C2"];
+    data.C2_trait = positionAssignment["C2"];
     
-    // Log response data to console (just for checks)
+    data.facejudged = ciImg.imgHtml;
+
+    // Log response data to console (for debugging)
     console.log("Participant ID:", jspsych_id);
     console.log("Face Judged:", data.facejudged);
     console.log("Recorded Responses:", responses);
-      
-    // Reset CSS to default values
+    console.log("Traits Presented:", {
+        A1: positionAssignment["A1"],
+        A2: positionAssignment["A2"],
+        B1: positionAssignment["B1"],
+        B2: positionAssignment["B2"],
+        C1: positionAssignment["C1"],
+        C2: positionAssignment["C2"]
+    });
+
+    // Reset CSS after the task (optional)
     $(".jspsych-content").css("max-width", "");
     $(".jspsych-content").css("margin-top", "");
     $(".jspsych-survey-likert-statement").css("margin", "");
