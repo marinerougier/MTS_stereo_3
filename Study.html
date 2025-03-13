@@ -333,7 +333,7 @@ stim_faces_selection = _.shuffle(stim_faces_selection); // randomize order
     stimulus: function() {
       var html = "";
       html += "<h1>Intermediary Task - Person perception</h1>";
-      html += "<p class='justify'>Part 1 is now over.<br><br> <b>Before going to Part 2 of the Learning Task, we will ask you to report several judgement on individuals, based on their face.</b> <br><br>Specifically, <b><u>your task will be to evaluate photographed individual on a series of personality traits.</b></u> You will indicate the extent to which you think the person possesses each of the trait. <b>In total, you will evaluate 15 faces. </b>";
+      html += "<p class='justify'>Part 1 is now over.<br><br> <b>Before going to Part 2 of the Learning Task, we will ask you to report several judgement on individuals, based on their face.</b> <br><br>Specifically, <b><u>your task will be to evaluate photographed individuals on a series of personality traits.</b></u> You will indicate the extent to which you think the person possesses each of the trait. <b>In total, you will evaluate 15 photographed individuals. </b>";
       html += "<p class='justify'><b>Given that this task is on person perception, we are not interested in your tact, politeness, or other ";
       html += "factors that are usually important in everyday life situations. </b></br>";
       html += "It is extremely important that you try to answer <b> as honestly and as spontaneously as possible.</b></br></br>";
@@ -753,7 +753,18 @@ stim_faces_selection.map(function(ciImg){
     console.log("Participant ID:", jspsych_id);
     console.log("Face Judged:", data.facejudged);
     console.log("Recorded Responses:", responses);
-      }
+      
+    // Reset CSS to default values
+    $(".jspsych-content").css("max-width", "");
+    $(".jspsych-content").css("margin-top", "");
+    $(".jspsych-survey-likert-statement").css("margin", "");
+    $(".jspsych-survey-likert-statement").css("padding", "");
+    $(".jspsych-survey-likert-opts").css("padding", "");
+    $("#jspsych-survey-likert-next").css("margin-top", "");
+    $("#jspsych-survey-likert-form").css("width", "");
+    $("li").css("width", "");
+    }
+
     };
     judgments_faces.push(likert_trial);
 });
