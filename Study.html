@@ -1012,6 +1012,7 @@ preloadimages = _.flattenDeep(preloadimages);
           .ref("MTS_stereo_3/" + jspsych_id + "/")
           .update({ dataMTS_measure })
           .then(function () {
+          database
             .ref("MTS_stereo_3/" + jspsych_id + "/")
             .update({ datarating })
             .then(function () {
